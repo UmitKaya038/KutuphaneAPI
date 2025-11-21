@@ -15,52 +15,6 @@ Bu API ile kitapları, yazarları, kategorileri ve kullanıcıları yönetebiliy
 *   SQLite veritabanı kullanıyor.
 *   Otomatik dokümantasyonu var (Swagger UI).
 
-## Veritabanı Tasarımı (ER Şeması)
-
-```mermaid
-erDiagram
-    YAZAR ||--o{ KITAP : "yazar"
-    KATEGORI ||--o{ KITAP : "kategori"
-    KULLANICI ||--o{ ODUNC : "odunc_alir"
-    KITAP ||--o{ ODUNC : "odunc_verilir"
-
-    YAZAR {
-        int id PK
-        string ad
-        string soyad
-        string biyografi
-    }
-
-    KATEGORI {
-        int id PK
-        string ad
-    }
-
-    KITAP {
-        int id PK
-        string baslik
-        string isbn
-        int yayin_yili
-        int yazar_id FK
-        int kategori_id FK
-    }
-
-    KULLANICI {
-        int id PK
-        string ad
-        string soyad
-        string email
-        bool aktif_mi
-    }
-
-    ODUNC {
-        int id PK
-        int kullanici_id FK
-        int kitap_id FK
-        date alis_tarihi
-        date teslim_tarihi
-    }
-```
 
 ## Kurulum
 
@@ -141,4 +95,51 @@ KutuphaneAPI/
 ├── tests/            # Testler burada
 ├── requirements.txt  # Kütüphaneler
 └── run.bat           # Çalıştırma betiği
+```
+
+## Veritabanı Tasarımı (ER Şeması)
+
+```mermaid
+erDiagram
+    YAZAR ||--o{ KITAP : "yazar"
+    KATEGORI ||--o{ KITAP : "kategori"
+    KULLANICI ||--o{ ODUNC : "odunc_alir"
+    KITAP ||--o{ ODUNC : "odunc_verilir"
+
+    YAZAR {
+        int id PK
+        string ad
+        string soyad
+        string biyografi
+    }
+
+    KATEGORI {
+        int id PK
+        string ad
+    }
+
+    KITAP {
+        int id PK
+        string baslik
+        string isbn
+        int yayin_yili
+        int yazar_id FK
+        int kategori_id FK
+    }
+
+    KULLANICI {
+        int id PK
+        string ad
+        string soyad
+        string email
+        bool aktif_mi
+    }
+
+    ODUNC {
+        int id PK
+        int kullanici_id FK
+        int kitap_id FK
+        date alis_tarihi
+        date teslim_tarihi
+    }
 ```
